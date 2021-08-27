@@ -53,6 +53,7 @@ sed -i 's/^#KerberosAuthentication.*/KerberosAuthentication no/g' /etc/ssh/sshd_
 
 # 禁用X11Forwarding
 # X11Forwarding no
+sed -i 's/^X11Forwarding.*/X11Forwarding no/g' /etc/ssh/sshd_config
 
 # 开启防火墙，设置ssh新端口
 
