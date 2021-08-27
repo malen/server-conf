@@ -11,6 +11,9 @@ if [[ "$#" == "4" ]]; then
     # 上传文件到服务器
     scp ~/.ssh/id_ed25519_"${fname}".pub root@"${scp}":/tmp
 
+    # 另一种还未验证的方法
+    # ssh-copy-id -i ~/.ssh/id_ed25519_"${fname}".pub root@"${scp}"
+
 else
   read -p "Please type your email address:" email
   ssh-keygen -t ed25519 -C "${email}"
