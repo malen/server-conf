@@ -3,16 +3,16 @@
 #export PATH=$PATH:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
 
 if [[ "$#" == "4" ]]; then
-	fname="${1}"
-	email="${2}"
-	passwd="${3}"
-	ipaddr="${4}"
-	ssh-keygen -t ed25519 -C "${email}" -N "${passwd}" -f ~/.ssh/id_ed25519_"${fname}" -q
-    # 上传文件到服务器
-    scp ~/.ssh/id_ed25519_"${fname}".pub root@"${scp}":/tmp
+  fname="${1}"
+  passwd="${2}"
+  user="${3}"
+  ipaddr="${4}"
+  ssh-keygen -t ed25519 -C "${fname}_${user}" -N "${passwd}" -f ~/.ssh/id_ed25519_"${fname}" -q
+  # 上传文件到服务器
+  #scp ~/.ssh/id_ed25519_"${fname}".pub "${user}"@"${ipaddr}":/tmp
 
-    # 另一种还未验证的方法
-    # ssh-copy-id -i ~/.ssh/id_ed25519_"${fname}".pub root@"${scp}"
+  # 另一种还未验证的方法
+  ssh-copy-id -i ~/.ssh/id_ed25519_"${fname}".pub "${user}"@"${ipaddr}"
 
 else
   read -p "Please type your email address:" email
