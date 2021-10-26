@@ -11,7 +11,7 @@ if [[ "$#" == "4" ]]; then
   # 上传文件到服务器
   #scp ~/.ssh/id_ed25519_"${fname}".pub "${user}"@"${ipaddr}":/tmp
 
-  # 另一种还未验证的方法
+  # 最直接的方法
   ssh-copy-id -i ~/.ssh/id_ed25519_"${fname}".pub "${user}"@"${ipaddr}"
 
 else

@@ -19,6 +19,7 @@ fi
 semanage port -a -t ssh_port_t -p tcp ${port}
 # 开启防火墙，设置ssh新端口
 firewall-cmd --zone=public --add-port=${port}/tcp --permanent
+firewall-cmd --reload
 
 function edit_sshd_config(){
     result=$(sed -n "/^${1}.*/p" ${sshd_confg})
