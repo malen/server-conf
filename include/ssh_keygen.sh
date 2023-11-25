@@ -12,6 +12,11 @@ if [[ "$#" == "4" ]]; then
   #scp ~/.ssh/id_ed25519_"${fname}".pub "${user}"@"${ipaddr}":/tmp
 
   # 最直接的方法
+  # 前提：
+  # 目标Linux系统的ssh要允许root用户以密码登录。可以在安装系统的时候选择，或者安装完后修改sshd_config
+  # 修改/etc/ssh/sshd_config
+  # PermitRootLogin yes
+  # PasswordAuthentication yes
   ssh-copy-id -i ~/.ssh/id_ed25519_"${fname}".pub "${user}"@"${ipaddr}"
 
 else

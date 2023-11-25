@@ -53,9 +53,9 @@ edit_sshd_config Compression no
 #############################################
 #  用户登录控制
 #############################################
-# 禁止root用户登录
+# 禁止root用户登录，但禁止密码
 #sed -i 's/^#*PermitRootLogin.*/PermitRootLogin no/g' ${sshd_confg}
-edit_sshd_config PermitRootLogin no
+edit_sshd_config PermitRootLogin prohibit-password
 # 限制身份验证最大尝试次数
 #sed -i 's/^#*MaxAuthTries.*/MaxAuthTries 3/g' ${sshd_confg}
 edit_sshd_config MaxAuthTries 3
