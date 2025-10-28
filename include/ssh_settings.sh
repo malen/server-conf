@@ -9,13 +9,13 @@ else
     sshd_confg="${1}"
 fi
 
-read -p "Please type ssh's port(27022):" port
+read -p "Please type ssh's port(22):" port
 if [[ -z "${port}" ]]; then
-    port=27022
+    port=22
 fi
 
 # SELinux 添加SSH新端口
-#然后添加27022端口到Selinux允许列表中。
+#然后添加22端口到Selinux允许列表中。
 semanage port -a -t ssh_port_t -p tcp ${port}
 # 开启防火墙，设置ssh新端口
 firewall-cmd --zone=public --add-port=${port}/tcp --permanent
@@ -40,8 +40,8 @@ function edit_sshd_config(){
 # sed -i 's/^#Protocol 2/Protocol 2/g' ${sshd_confg}
 
 # 使用非常规端口
-# Port 27022
-#sed -i 's/^#*Port.*/Port 27022/g' ${sshd_confg}
+# Port 22
+#sed -i 's/^#*Port.*/Port 22/g' ${sshd_confg}
 edit_sshd_config Port ${port}
 
 # 关闭压缩功能
@@ -53,7 +53,7 @@ edit_sshd_config Compression no
 #############################################
 #  用户登录控制
 #############################################
-# 禁止root用户登录，但禁止密码
+# 允许root用户登录，但禁止密码
 #sed -i 's/^#*PermitRootLogin.*/PermitRootLogin no/g' ${sshd_confg}
 edit_sshd_config PermitRootLogin prohibit-password
 # 限制身份验证最大尝试次数
